@@ -1,0 +1,92 @@
+/* Background styling */
+body {
+  background: url('./bg.png') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Digital-7", sans-serif;
+  margin: 0;
+}
+
+/* General reset and styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Centering sections */
+section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+/* Timer display styling */
+h1 {
+  color: #e2f9fe;
+  font-size: 250px; /* Increase the font size */
+  text-shadow: 0px 0px 20px rgba(0, 255, 255, 0.8);
+  margin: 0;
+  text-align: center;
+}
+
+/* Input field styling */
+input[type="text"] {
+  text-align: center;
+  width: 80px;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px; /* Adjusted padding for better alignment */
+  color: #333;
+  background-color: #e2f9fe;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Timer form styling */
+#timerForm {
+  color: #ffffff;
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Button styling */
+input[type="button"] {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 20px; /* Adjust padding for better text alignment */
+  color: #ffffff;
+  background-color: #007acc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input[type="button"]:hover {
+  background-color: #005b99;
+}
+
+#start, #reset, #button10, #button5, #button60 {
+  min-width: 100px; /* Ensure buttons are consistent in width */
+  padding: 15px 0; /* Ensures text is vertically centered */
+  text-align: center;
+}
+
+#button10, #button5, #button60 {
+  background-color: #00aacc;
+}
+
+#button10:hover, #button5:hover, #button60:hover {
+  background-color: #008899;
+}

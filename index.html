@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIMER</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section>
+    <!-- Timer Utama -->
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h1>
+        <span id="showmnt">00</span>:<span id="showdtk">00</span>
+      </h1> 
+    </div>
+  </section>
+  <section>
+    <!-- Form Input Menit dan Detik -->
+    <div style="text-align: center; margin-bottom: 20px;">
+      <form id="timerForm" style="display: inline-flex; align-items: center; gap: 10px;">
+        <div>
+          Menit: <input type="text" id="mnt" name="mnt" placeholder="Menit" style="text-align: center; width: 80px;"/>
+        </div>
+        <div>
+          Detik: <input type="text" id="dtk" name="dtk" size="2" maxlength="2" placeholder="Detik" style="text-align: center; width: 80px;"/>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section>
+    <!-- Tombol Utama dan Preset Waktu -->
+    <div style="text-align: center;">
+      <div style="display: inline-flex; gap: 10px; margin-bottom: 10px;">
+        <input type="button" id="start" value="START" onclick="startTimer();" style="width: 80px;"/>
+        <input type="button" id="reset" value="RESET" onclick="resetTimer();" style="width: 80px;"/>
+      </div>
+      <div style="display: inline-flex; gap: 10px;">
+        <!-- Tombol Baru untuk 10 Detik, 5 Detik, dan 60 Menit -->
+        <input type="button" id="button10" value="10" onclick="setPresetTime(0, 10);" style="width: 80px;"/>
+        <input type="button" id="button5" value="5" onclick="setPresetTime(0, 5);" style="width: 80px;"/>
+        <input type="button" id="button60" value="60 Menit" onclick="setPresetTimeManual(60, 0);" style="width: 80px;"/>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    var menit = 0;
+    var detik = 0;
+    var timeout;
+
+    function setPresetTime(m, s) {
+      // Set waktu sesuai dengan preset dan mulai langsung
+      document.getElementById('mnt').value = m;
+      document.getElementById('dtk').value = s;
+      resetTimer(); // Hentikan countdown yang sedang berjalan
+      menit = m;
+      detik = s;
+      startTimer();  // Langsung mulai countdown
+    }
+
+    function setPresetTimeManual(m, s) {
+      // Set waktu tanpa langsung memulai countdown
+      document.getElementById('mnt').value = m;
+      document.getElementById('dtk').value = s;
+      resetTimer();
+      menit = m;
+      detik = s;
+    }
+
+    function startTimer() {
+      // Sembunyikan form input saat countdown berjalan
+      document.getElementById('timerForm').style.display = 'none';
+      document.getElementById('start').setAttribute('disabled', 'disabled');
+      displayTime(); // Tampilkan waktu saat ini sebelum countdown
+      countdownTimer();
+    }
+
+    function countdownTimer() {
+      // Jika waktu habis, reset timer
+      if (menit === 0 && detik === 0) {
+        resetTimer();
+        return;
+      }
+
+      // Kurangi waktu setelah menampilkan waktu saat ini
+      timeout = setTimeout(function() {
+        if (detik === 0 && menit > 0) {
+          detik = 59;
+          menit--;
+        } else if (detik > 0) {
+          detik--;
+        }
+
+        displayTime();
+        countdownTimer();
+      }, 1000);
+    }
+
+    function displayTime() {
+      document.getElementById('showmnt').innerHTML = menit < 10 ? '0' + menit : menit;
+      document.getElementById('showdtk').innerHTML = detik < 10 ? '0' + detik : detik;
+    }
+
+    function resetTimer() {
+      clearTimeout(timeout);
+      document.getElementById('start').removeAttribute('disabled'); 
+      document.getElementById('showmnt').innerHTML = "00";
+      document.getElementById('showdtk').innerHTML = "00";
+      menit = 0;
+      detik = 0;
+      document.getElementById('timerForm').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
