@@ -77,6 +77,11 @@ input[type="button"]:hover {
   background-color: #005b99;
 }
 
+
+.red{
+  background-color: rgb(208, 72, 72) !important;
+}
+
 #start, #reset, #button10, #button5, #button60 {
   min-width: 100px; /* Ensure buttons are consistent in width */
   padding: 15px 0; /* Ensures text is vertically centered */
